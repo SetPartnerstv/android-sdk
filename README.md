@@ -34,6 +34,6 @@ allprojects {
 
 ```bash
 dependencies {
-    implementation 'com.github.ogon-ru:android-sdk:1.0.2'
+    implementation 'com.github.SetPartnerstv:android-sdk:1.0.2'
 }
 ```
