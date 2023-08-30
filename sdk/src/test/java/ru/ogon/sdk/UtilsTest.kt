@@ -1,10 +1,10 @@
-package ru.ogon.sdk
+package ru.gazprombonus.sdk
 
 import org.junit.Test
 import org.junit.Assert.*
-import ru.ogon.sdk.model.BillingAddressParameters
-import ru.ogon.sdk.model.CardInfo
-import ru.ogon.sdk.model.IsReadyToPayRequest
+import ru.gazprombonus.sdk.model.BillingAddressParameters
+import ru.gazprombonus.sdk.model.CardInfo
+import ru.gazprombonus.sdk.model.IsReadyToPayRequest
 
 private const val BILLING_ADDRESS_PARAMS_JSON = """{"format":"TEST","phoneNumberRequired":true}"""
 

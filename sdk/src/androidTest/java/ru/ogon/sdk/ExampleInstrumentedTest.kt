@@ -1,4 +1,4 @@
-package ru.ogon.sdk
+package ru.gazprombonus.sdk
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ru.ogon.sdk", appContext.packageName)
+        assertEquals("ru.gazprombonus.sdk", appContext.packageName)
     }
 }
