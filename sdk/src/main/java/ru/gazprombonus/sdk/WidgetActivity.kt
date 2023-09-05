@@ -291,9 +291,13 @@ open class WidgetActivity : AppCompatActivity() {
     }
 
     private fun getDomainName(url: String): String {
-        val uri = URI(url)
-        val domain: String = uri.host
-        return domain.removePrefix("www.")
+      return if (URLUtil.isValidUrl(url)) {
+          val uri = URI(url)
+          val domain: String = uri.host
+        domain.removePrefix("www.")
+      } else {
+        ""
+      }
     }
 
     private fun isWidgetUrl(url: String?): Boolean = url?.let {

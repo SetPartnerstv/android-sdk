@@ -334,8 +334,8 @@ public final class Mobile {
       "ENT_TYPE_ANDROID_APP_INSTALL_REFERRER\020\001\022" +
       "3\n/MOBILE_ANALYTICS_EVENT_TYPE_ANDROID_I" +
       "AU_INSTALL\020\002\0222\n.MOBILE_ANALYTICS_EVENT_T" +
-      "YPE_ANDROID_IAU_CANCEL\020\003B\025\n\021ru.gazprombonus.sdk." +
-      "modelP\001b\006proto3"
+      "YPE_ANDROID_IAU_CANCEL\020\003B\035\n\031ru.gazprombo" +
+      "nus.sdk.modelP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
