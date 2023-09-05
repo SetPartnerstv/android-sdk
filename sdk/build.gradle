@@ -65,6 +65,4 @@ dependencies {
             }
         }
     }
-} */
-
-// apply from: '../publish_local.gradle'
+}
