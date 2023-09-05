@@ -4,18 +4,18 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.github.ogon-ru'
-version = '1.0.11'
+group = 'com.github.SetPartnerstv'
+version = '2.0.0'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 31
-        versionCode 33
-        versionName '1.0.11'
+        minSdkVersion 28
+        targetSdkVersion 33
+        versionCode 38
+        versionName '2.0.0'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -24,14 +24,14 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "BASE_URL", "\"https://dev-widget.ogon.ru\""
+            buildConfigField "String", "BASE_URL", "\"https://dev-widget.gazprombonus.ru\""
             buildConfigField "String", "VERSION", "\"$defaultConfig.versionName ($defaultConfig.versionCode)\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField "String", "BASE_URL", "\"https://widget.ogon.ru\""
+            buildConfigField "String", "BASE_URL", "\"https://widget.gazprombonus.ru\""
             buildConfigField "String", "VERSION", "\"$defaultConfig.versionName ($defaultConfig.versionCode)\""
         }
     }
@@ -59,9 +59,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.ogon-ru'
+                groupId = 'com.github.SetPartnerstv'
                 artifactId = 'android-sdk'
-                version = '1.0.3'
+                version = '2.0.0'
             }
         }
     }
