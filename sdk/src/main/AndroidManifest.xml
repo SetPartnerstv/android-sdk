@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.ogon.sdk">
+    package="ru.gazprombonus.sdk">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -14,7 +12,7 @@
     <application>
         <activity
             android:exported="false"
-            android:name="ru.ogon.sdk.WidgetActivity"
+            android:name="ru.gazprombonus.sdk.WidgetActivity"
             android:label="@string/title_activity_widget"
             android:theme="@style/Theme.SDK"
             android:windowSoftInputMode="adjustResize"
@@ -22,7 +20,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.ru.ogon.sdk.fileprovider"
+            android:authorities="${applicationId}.ru.gazprombonus.sdk.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

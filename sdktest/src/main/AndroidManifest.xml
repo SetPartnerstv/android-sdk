@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.ogon.sdktest">
+    package="ru.gazprombonus.sdktest">
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -15,7 +15,7 @@
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
         <activity
-            android:name="ru.ogon.sdktest.MainActivity"
+            android:name="ru.gazprombonus.sdktest.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
