@@ -97,6 +97,19 @@ private static final long serialVersionUID = 0L;
             utmContent_ = s;
             break;
           }
+          case 66: {
+            com.google.protobuf.Timestamp.Builder subBuilder = null;
+            if (emittedAt_ != null) {
+              subBuilder = emittedAt_.toBuilder();
+            }
+            emittedAt_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(emittedAt_);
+              emittedAt_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -378,6 +391,44 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int EMITTED_AT_FIELD_NUMBER = 8;
+  private com.google.protobuf.Timestamp emittedAt_;
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   * @return Whether the emittedAt field is set.
+   */
+  @java.lang.Override
+  public boolean hasEmittedAt() {
+    return emittedAt_ != null;
+  }
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   * @return The emittedAt.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getEmittedAt() {
+    return emittedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : emittedAt_;
+  }
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.TimestampOrBuilder getEmittedAtOrBuilder() {
+    return getEmittedAt();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -413,6 +464,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(utmContent_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 7, utmContent_);
     }
+    if (emittedAt_ != null) {
+      output.writeMessage(8, getEmittedAt());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -444,6 +498,10 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(utmContent_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, utmContent_);
     }
+    if (emittedAt_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getEmittedAt());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -472,6 +530,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getUtmTerm())) return false;
     if (!getUtmContent()
         .equals(other.getUtmContent())) return false;
+    if (hasEmittedAt() != other.hasEmittedAt()) return false;
+    if (hasEmittedAt()) {
+      if (!getEmittedAt()
+          .equals(other.getEmittedAt())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -497,6 +560,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getUtmTerm().hashCode();
     hash = (37 * hash) + UTM_CONTENT_FIELD_NUMBER;
     hash = (53 * hash) + getUtmContent().hashCode();
+    if (hasEmittedAt()) {
+      hash = (37 * hash) + EMITTED_AT_FIELD_NUMBER;
+      hash = (53 * hash) + getEmittedAt().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -644,6 +711,12 @@ private static final long serialVersionUID = 0L;
 
       utmContent_ = "";
 
+      if (emittedAtBuilder_ == null) {
+        emittedAt_ = null;
+      } else {
+        emittedAt_ = null;
+        emittedAtBuilder_ = null;
+      }
       return this;
     }
 
@@ -677,6 +750,11 @@ private static final long serialVersionUID = 0L;
       result.utmCampaign_ = utmCampaign_;
       result.utmTerm_ = utmTerm_;
       result.utmContent_ = utmContent_;
+      if (emittedAtBuilder_ == null) {
+        result.emittedAt_ = emittedAt_;
+      } else {
+        result.emittedAt_ = emittedAtBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -751,6 +829,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getUtmContent().isEmpty()) {
         utmContent_ = other.utmContent_;
         onChanged();
+      }
+      if (other.hasEmittedAt()) {
+        mergeEmittedAt(other.getEmittedAt());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1289,6 +1370,161 @@ private static final long serialVersionUID = 0L;
       utmContent_ = value;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.Timestamp emittedAt_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> emittedAtBuilder_;
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     * @return Whether the emittedAt field is set.
+     */
+    public boolean hasEmittedAt() {
+      return emittedAtBuilder_ != null || emittedAt_ != null;
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     * @return The emittedAt.
+     */
+    public com.google.protobuf.Timestamp getEmittedAt() {
+      if (emittedAtBuilder_ == null) {
+        return emittedAt_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : emittedAt_;
+      } else {
+        return emittedAtBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public Builder setEmittedAt(com.google.protobuf.Timestamp value) {
+      if (emittedAtBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        emittedAt_ = value;
+        onChanged();
+      } else {
+        emittedAtBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public Builder setEmittedAt(
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (emittedAtBuilder_ == null) {
+        emittedAt_ = builderForValue.build();
+        onChanged();
+      } else {
+        emittedAtBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public Builder mergeEmittedAt(com.google.protobuf.Timestamp value) {
+      if (emittedAtBuilder_ == null) {
+        if (emittedAt_ != null) {
+          emittedAt_ =
+            com.google.protobuf.Timestamp.newBuilder(emittedAt_).mergeFrom(value).buildPartial();
+        } else {
+          emittedAt_ = value;
+        }
+        onChanged();
+      } else {
+        emittedAtBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public Builder clearEmittedAt() {
+      if (emittedAtBuilder_ == null) {
+        emittedAt_ = null;
+        onChanged();
+      } else {
+        emittedAt_ = null;
+        emittedAtBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public com.google.protobuf.Timestamp.Builder getEmittedAtBuilder() {
+      
+      onChanged();
+      return getEmittedAtFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getEmittedAtOrBuilder() {
+      if (emittedAtBuilder_ != null) {
+        return emittedAtBuilder_.getMessageOrBuilder();
+      } else {
+        return emittedAt_ == null ?
+            com.google.protobuf.Timestamp.getDefaultInstance() : emittedAt_;
+      }
+    }
+    /**
+     * <pre>
+     * [(gogoproto.stdtime) = true];
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        getEmittedAtFieldBuilder() {
+      if (emittedAtBuilder_ == null) {
+        emittedAtBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                getEmittedAt(),
+                getParentForChildren(),
+                isClean());
+        emittedAt_ = null;
+      }
+      return emittedAtBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

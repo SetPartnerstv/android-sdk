@@ -89,4 +89,31 @@ public interface MobileAnalyticsEventOrBuilder extends
    */
   com.google.protobuf.ByteString
       getUtmContentBytes();
+
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   * @return Whether the emittedAt field is set.
+   */
+  boolean hasEmittedAt();
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   * @return The emittedAt.
+   */
+  com.google.protobuf.Timestamp getEmittedAt();
+  /**
+   * <pre>
+   * [(gogoproto.stdtime) = true];
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp emitted_at = 8;</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getEmittedAtOrBuilder();
 }
