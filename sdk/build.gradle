@@ -54,7 +54,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-/*afterEvaluate {
+afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
