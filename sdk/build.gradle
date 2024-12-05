@@ -5,17 +5,17 @@ plugins {
 }
 
 group = 'com.github.SetPartnerstv'
-version = '2.0.1'
+version = '2.0.2'
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         minSdkVersion 28
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 39
-        versionName '2.0.1'
+        versionName '2.0.2'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,7 +61,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.SetPartnerstv'
                 artifactId = 'android-sdk'
-                version = '2.0.1'
+                version = '2.0.2'
             }
         }
     }
