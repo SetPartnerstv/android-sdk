@@ -47,6 +47,10 @@ internal const val INJECT_JS_CODE = """
         if (window.PNWidget.onready) {
             window.PNWidget.onready();
         }
+        
+        window.addEventListener('webViewClose', (e) => {
+          window.PNWidget._sendMobileEvent('webViewClose');
+        });
     })();
 """
 
@@ -55,6 +59,7 @@ class JSBridge(
         private val eventListener: EventListener,
         private val navigationStateChange: () -> Unit,
         private val extraJSCode: String,
+        private val widget: WidgetActivity,
 ) : MobileEventDispatcher {
 
     private var hasListeners = false
@@ -111,6 +116,10 @@ class JSBridge(
 
     private fun handleEvent(json: String) {
         try {
+            if (json == "webViewClose") {
+                widget.finish()
+                return
+            }
             val event = MobileEvent.newBuilder().run {
                 fromJson(json)
                 build()

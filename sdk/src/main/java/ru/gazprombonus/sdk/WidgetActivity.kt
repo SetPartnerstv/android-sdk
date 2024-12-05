@@ -16,17 +16,37 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
-import android.webkit.*
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.webkit.HttpAuthHandler
+import android.webkit.PermissionRequest
+import android.webkit.SslErrorHandler
+import android.webkit.URLUtil
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import ru.gazprombonus.sdk.handlers.*
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import ru.gazprombonus.sdk.handlers.ClipboardWriteEventHandler
+import ru.gazprombonus.sdk.handlers.DefaultGooglePayEventHandler
+import ru.gazprombonus.sdk.handlers.MobileEventHandler
+import ru.gazprombonus.sdk.handlers.OpenUrlEventHandler
+import ru.gazprombonus.sdk.handlers.ShareUrlEventHandler
 import ru.gazprombonus.sdk.model.MobileEvent
 import ru.gazprombonus.sdk.model.MobileEventType
 import java.io.File
 import java.net.URI
 import java.net.URISyntaxException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 
 private const val BASE_URL = BuildConfig.BASE_URL
@@ -83,6 +103,7 @@ open class WidgetActivity : AppCompatActivity() {
             eventListener = ::handleEvent,
             navigationStateChange = ::handleNavigation,
             extraJSCode = intent.getStringExtra(EXTRA_APP_JSCODE) ?: "",
+            widget = this,
         )
 
         val url = Uri.parse(baseUrl).buildUpon().run {
@@ -453,5 +474,65 @@ open class WidgetActivity : AppCompatActivity() {
             return openFileChooser(callback)
         }
 
+
+        //////// FULL SCREEN MODE
+        var layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+
+        var parent: ViewGroup? = findViewById(android.R.id.content)
+        var customView: View? = null
+
+        override fun onShowCustomView(view: View?, callback: CustomViewCallback?) {
+            super.onShowCustomView(view, callback)
+            window.apply {
+                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && view != null) {
+                    WindowCompat.setDecorFitsSystemWindows(window, false)
+                    val controller = WindowInsetsControllerCompat(window, view)
+                    controller.hide(WindowInsetsCompat.Type.systemBars())
+                    controller.systemBarsBehavior =
+                        WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                } else {
+                    val decorView = window.decorView
+                    @Suppress("DEPRECATION")
+                    val uiOptions = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN)
+                    @Suppress("DEPRECATION")
+                    decorView.systemUiVisibility = uiOptions
+                }
+            }
+            customView = view;
+            view?.setLayoutParams(layoutParams);
+            parent?.addView(view);
+        }
+
+        override fun onHideCustomView() {
+            super.onHideCustomView()
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && customView != null) {
+                WindowCompat.setDecorFitsSystemWindows(window, true)
+                customView?.let {
+                    WindowInsetsControllerCompat(
+                        window,
+                        it
+                    ).show(WindowInsetsCompat.Type.systemBars())
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
+            }
+
+            parent?.removeView(customView);
+            customView = null;
+        }
+
     }
+
 }
