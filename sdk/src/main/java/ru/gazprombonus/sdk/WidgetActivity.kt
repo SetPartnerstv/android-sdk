@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.webkit.HttpAuthHandler
 import android.webkit.PermissionRequest
+import android.webkit.RenderProcessGoneDetail
 import android.webkit.SslErrorHandler
 import android.webkit.URLUtil
 import android.webkit.ValueCallback
@@ -148,6 +149,18 @@ open class WidgetActivity : AppCompatActivity() {
         handlers.add(ShareUrlEventHandler(this))
         handlers.add(ClipboardWriteEventHandler(this))
         handlers.add(DefaultGooglePayEventHandler(jsBridge))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        webView.onPause()
+        webView.pauseTimers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        webView.onResume()
+        webView.resumeTimers()
     }
 
     override fun onKeyDown(keyCode: Int, keyEvent: KeyEvent?): Boolean {
@@ -455,6 +468,19 @@ open class WidgetActivity : AppCompatActivity() {
                 }
             } */
             return false
+        }
+
+        override fun onRenderProcessGone(webView: WebView?, detail: RenderProcessGoneDetail): Boolean {
+            super.onRenderProcessGone(webView, detail)
+
+            if (detail.didCrash()) {
+                Log.e("[GPBonusWidget]", "The WebView rendering process crashed.")
+            } else {
+                Log.w("[GPBonusWidget]", "The WebView rendering process was killed by the system.")
+                webView?.reload()
+            }
+            // returning false would crash the app.
+            return true
         }
     }
 
