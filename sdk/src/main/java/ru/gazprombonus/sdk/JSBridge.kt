@@ -16,6 +16,9 @@ internal const val INJECT_JS_CODE = """
         
         window.PNWidget._listeners = new Set();
         window.PNWidget.version = "${BuildConfig.VERSION}";
+        window.PNWidget.build = "2";
+        window.PNWidget.platform = "Android";
+        window.PNWidget.features = { auth: false, share_text: true };
     
         window.PNWidget.sendMobileEvent = function sendMobileEvent(event) {
             window.PNWidget._sendMobileEvent(JSON.stringify(event));
