@@ -3,6 +3,7 @@ package ru.gazprombonus.sdk
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
+import androidx.core.graphics.Insets
 import ru.gazprombonus.sdk.handlers.MobileEventDispatcher
 import ru.gazprombonus.sdk.model.MobileEvent
 
@@ -16,7 +17,7 @@ internal const val INJECT_JS_CODE = """
         
         window.PNWidget._listeners = new Set();
         window.PNWidget.version = "${BuildConfig.VERSION}";
-        window.PNWidget.build = "2";
+        window.PNWidget.build = "${BuildConfig.BUILD}";
         window.PNWidget.platform = "Android";
         window.PNWidget.features = { auth: false, share_text: true };
     
@@ -68,8 +69,14 @@ class JSBridge(
     private var hasListeners = false
     private val eventQueue = mutableListOf<MobileEvent>()
 
+    private var systemBars: Insets = Insets.NONE
+
     init {
         webView.addJavascriptInterface(JSInterface(), "PNWidget")
+    }
+
+    fun setWebviewInsets(_systemBars: Insets) {
+        systemBars = _systemBars
     }
 
     override fun send(event: MobileEvent) {
@@ -112,9 +119,33 @@ class JSBridge(
             Log.e("[GPBonusWidget]", "Extra JS App code injection failed", exception)
         }
 
+        injectSystemBars()
+
         if (BuildConfig.DEBUG) {
             Log.d("[GPBonusWidget]", "injectJsCode;")
         }
+    }
+
+    fun injectSystemBars() {
+        val js = """
+            (function (){
+                if (!window.PNWidget) {
+                    return;
+                }              
+                window.PNWidget.systemBars = {
+                    top:  ${systemBars.top},
+                    bottom: ${systemBars.bottom},
+                    left:  ${systemBars.left},
+                    right: ${systemBars.right},
+                }
+            })();
+        """
+        try {
+            webView.evaluateJavascript(js, null)
+        } catch (exception: Throwable) {
+            Log.e("[GPBonusWidget]", "JS SystemBars injection failed", exception)
+        }
+
     }
 
     private fun handleEvent(json: String) {

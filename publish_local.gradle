@@ -9,7 +9,7 @@ project.afterEvaluate {
                 // version android.defaultConfig.versionName
                 setGroupId 'com.github.SetPartnerstv'
                 setArtifactId 'android-sdk'
-                version '2.1.0'
+                version '2.2.0'
 
                 artifact bundleReleaseAar
 

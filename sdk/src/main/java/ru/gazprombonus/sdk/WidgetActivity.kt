@@ -2,11 +2,12 @@ package ru.gazprombonus.sdk
 
 import android.annotation.TargetApi
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Bitmap
-import android.graphics.Rect
+import androidx.core.graphics.Insets
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Build
@@ -33,13 +34,16 @@ import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import ru.gazprombonus.sdk.handlers.BrightnessEventHandler
 import ru.gazprombonus.sdk.handlers.ClipboardWriteEventHandler
 import ru.gazprombonus.sdk.handlers.DefaultGooglePayEventHandler
 import ru.gazprombonus.sdk.handlers.MobileEventHandler
 import ru.gazprombonus.sdk.handlers.OpenUrlEventHandler
+import ru.gazprombonus.sdk.handlers.SharePromocodeEventHandler
 import ru.gazprombonus.sdk.handlers.ShareUrlEventHandler
 import ru.gazprombonus.sdk.model.MobileEvent
 import ru.gazprombonus.sdk.model.MobileEventType
@@ -76,11 +80,20 @@ open class WidgetActivity : AppCompatActivity() {
     private var httpPassword: String? = null
     private var permissionRequest: PermissionRequest? = null
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
-    private var cameraPhotoPath: String? = null
+    private var cameraPhotoUri: Uri? = null
     private var httpError = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(false)
+        } else {
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    )
+        }
         setContentView(R.layout.activity_widget)
 
         val token = intent.getStringExtra(EXTRA_TOKEN)
@@ -98,6 +111,7 @@ open class WidgetActivity : AppCompatActivity() {
 
             webViewClient = WidgetWebViewClient()
             webChromeClient = WidgetWebChromeClient()
+            overScrollMode = WebView.OVER_SCROLL_NEVER
         }
         jsBridge = JSBridge(
             webView = webView,
@@ -128,27 +142,27 @@ open class WidgetActivity : AppCompatActivity() {
         }
 
         val rootView = window.decorView.findViewById<View>(android.R.id.content)
-        val containerView = (webView.parent as View)
 
-        // GBoard autofill workaround
-        rootView?.viewTreeObserver?.addOnGlobalLayoutListener {
-            try {
-                val rect = Rect().apply {
-                    window.decorView.getWindowVisibleDisplayFrame(this)
-                }
-
-                containerView.layoutParams = containerView.layoutParams.apply {
-                    height = rect.height()
-                }
-            } catch (e: Throwable) {
-                Log.e("[GPBonusWidget]", "Container resize error", e)
-            }
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            var insetsPx = Insets.of(toPx(this, systemBars.left), toPx(this, systemBars.top), toPx(this, systemBars.right), toPx(this, systemBars.bottom))
+            jsBridge.setWebviewInsets(insetsPx)
+            insets
         }
+
+        WindowCompat.getInsetsController(window, window.decorView)
+            ?.isAppearanceLightStatusBars  = true
 
         handlers.add(OpenUrlEventHandler(this))
         handlers.add(ShareUrlEventHandler(this))
         handlers.add(ClipboardWriteEventHandler(this))
         handlers.add(DefaultGooglePayEventHandler(jsBridge))
+        handlers.add(SharePromocodeEventHandler(this))
+        handlers.add(BrightnessEventHandler(this))
+    }
+    fun toPx(context: Context, pt: Int): Int {
+        val metrics = context.resources.displayMetrics
+        return (pt /  metrics.density ).toInt()
     }
 
     override fun onPause() {
@@ -204,7 +218,7 @@ open class WidgetActivity : AppCompatActivity() {
             INPUT_FILE_REQUEST_CODE -> {
                 if (resultCode == RESULT_OK) {
                     val result = if (data == null || data.dataString == null) {
-                        cameraPhotoPath?.let { arrayOf(Uri.parse(it)) }
+                        arrayOf(cameraPhotoUri!!)
                     } else {
                         arrayOf(Uri.parse(data.dataString))
                     }
@@ -256,9 +270,8 @@ open class WidgetActivity : AppCompatActivity() {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 val fileUri = FileProvider.getUriForFile(this, getAuthority(), photoFile)
-                cameraPhotoPath = "file:" + photoFile.absolutePath
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
-//                cameraIntent.putExtra("PhotoPath", cameraPhotoPath)
+                cameraPhotoUri = fileUri
 
                 val resInfoList: List<ResolveInfo> = packageManager.queryIntentActivities(cameraIntent, PackageManager.MATCH_DEFAULT_ONLY)
                 for (resolveInfo in resInfoList) {
@@ -285,9 +298,7 @@ open class WidgetActivity : AppCompatActivity() {
     }
 
     private fun hasCameraPermission(): Boolean = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-        checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-        checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
     } else {
         true
     }
@@ -300,8 +311,6 @@ open class WidgetActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !hasCameraPermission()) {
                 val permissions = arrayOf(
                         android.Manifest.permission.CAMERA,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
                 )
                 requestPermissions(permissions, CAMERA_REQUEST_CODE)
             } else {

@@ -232,6 +232,25 @@ private static final long serialVersionUID = 0L;
             payload_ = s;
             break;
           }
+          case 136: {
+            payload_ = input.readInt32();
+            payloadCase_ = 17;
+            break;
+          }
+          case 146: {
+            ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder subBuilder = null;
+            if (payloadCase_ == 18) {
+              subBuilder = ((ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_).toBuilder();
+            }
+            payload_ =
+                input.readMessage(ru.gazprombonus.sdk.model.MobileAppPromocodeShare.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_);
+              payload_ = subBuilder.buildPartial();
+            }
+            payloadCase_ = 18;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -286,6 +305,8 @@ private static final long serialVersionUID = 0L;
     APPLICATION_PARAMS_UPDATE(14),
     ANALYTICS_EVENT(15),
     CLIPBOARD_WRITE(16),
+    BRIGHTNESS(17),
+    PROMOCODE(18),
     PAYLOAD_NOT_SET(0);
     private final int value;
     private PayloadCase(int value) {
@@ -318,6 +339,8 @@ private static final long serialVersionUID = 0L;
         case 14: return APPLICATION_PARAMS_UPDATE;
         case 15: return ANALYTICS_EVENT;
         case 16: return CLIPBOARD_WRITE;
+        case 17: return BRIGHTNESS;
+        case 18: return PROMOCODE;
         case 0: return PAYLOAD_NOT_SET;
         default: return null;
       }
@@ -870,6 +893,58 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int BRIGHTNESS_FIELD_NUMBER = 17;
+  /**
+   * <code>int32 brightness = 17;</code>
+   * @return Whether the brightness field is set.
+   */
+  @java.lang.Override
+  public boolean hasBrightness() {
+    return payloadCase_ == 17;
+  }
+  /**
+   * <code>int32 brightness = 17;</code>
+   * @return The brightness.
+   */
+  @java.lang.Override
+  public int getBrightness() {
+    if (payloadCase_ == 17) {
+      return (java.lang.Integer) payload_;
+    }
+    return 0;
+  }
+
+  public static final int PROMOCODE_FIELD_NUMBER = 18;
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   * @return Whether the promocode field is set.
+   */
+  @java.lang.Override
+  public boolean hasPromocode() {
+    return payloadCase_ == 18;
+  }
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   * @return The promocode.
+   */
+  @java.lang.Override
+  public ru.gazprombonus.sdk.model.MobileAppPromocodeShare getPromocode() {
+    if (payloadCase_ == 18) {
+       return (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_;
+    }
+    return ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+  }
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   */
+  @java.lang.Override
+  public ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder getPromocodeOrBuilder() {
+    if (payloadCase_ == 18) {
+       return (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_;
+    }
+    return ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -932,6 +1007,13 @@ private static final long serialVersionUID = 0L;
     }
     if (payloadCase_ == 16) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 16, payload_);
+    }
+    if (payloadCase_ == 17) {
+      output.writeInt32(
+          17, (int)((java.lang.Integer) payload_));
+    }
+    if (payloadCase_ == 18) {
+      output.writeMessage(18, (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_);
     }
     unknownFields.writeTo(output);
   }
@@ -1003,6 +1085,15 @@ private static final long serialVersionUID = 0L;
     }
     if (payloadCase_ == 16) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(16, payload_);
+    }
+    if (payloadCase_ == 17) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(
+            17, (int)((java.lang.Integer) payload_));
+    }
+    if (payloadCase_ == 18) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(18, (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -1082,6 +1173,14 @@ private static final long serialVersionUID = 0L;
         if (!getClipboardWrite()
             .equals(other.getClipboardWrite())) return false;
         break;
+      case 17:
+        if (getBrightness()
+            != other.getBrightness()) return false;
+        break;
+      case 18:
+        if (!getPromocode()
+            .equals(other.getPromocode())) return false;
+        break;
       case 0:
       default:
     }
@@ -1159,6 +1258,14 @@ private static final long serialVersionUID = 0L;
       case 16:
         hash = (37 * hash) + CLIPBOARD_WRITE_FIELD_NUMBER;
         hash = (53 * hash) + getClipboardWrite().hashCode();
+        break;
+      case 17:
+        hash = (37 * hash) + BRIGHTNESS_FIELD_NUMBER;
+        hash = (53 * hash) + getBrightness();
+        break;
+      case 18:
+        hash = (37 * hash) + PROMOCODE_FIELD_NUMBER;
+        hash = (53 * hash) + getPromocode().hashCode();
         break;
       case 0:
       default:
@@ -1416,6 +1523,16 @@ private static final long serialVersionUID = 0L;
       if (payloadCase_ == 16) {
         result.payload_ = payload_;
       }
+      if (payloadCase_ == 17) {
+        result.payload_ = payload_;
+      }
+      if (payloadCase_ == 18) {
+        if (promocodeBuilder_ == null) {
+          result.payload_ = payload_;
+        } else {
+          result.payload_ = promocodeBuilder_.build();
+        }
+      }
       result.payloadCase_ = payloadCase_;
       onBuilt();
       return result;
@@ -1533,6 +1650,14 @@ private static final long serialVersionUID = 0L;
           payloadCase_ = 16;
           payload_ = other.payload_;
           onChanged();
+          break;
+        }
+        case BRIGHTNESS: {
+          setBrightness(other.getBrightness());
+          break;
+        }
+        case PROMOCODE: {
+          mergePromocode(other.getPromocode());
           break;
         }
         case PAYLOAD_NOT_SET: {
@@ -3529,6 +3654,189 @@ private static final long serialVersionUID = 0L;
       payload_ = value;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>int32 brightness = 17;</code>
+     * @return Whether the brightness field is set.
+     */
+    public boolean hasBrightness() {
+      return payloadCase_ == 17;
+    }
+    /**
+     * <code>int32 brightness = 17;</code>
+     * @return The brightness.
+     */
+    public int getBrightness() {
+      if (payloadCase_ == 17) {
+        return (java.lang.Integer) payload_;
+      }
+      return 0;
+    }
+    /**
+     * <code>int32 brightness = 17;</code>
+     * @param value The brightness to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBrightness(int value) {
+      payloadCase_ = 17;
+      payload_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 brightness = 17;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBrightness() {
+      if (payloadCase_ == 17) {
+        payloadCase_ = 0;
+        payload_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ru.gazprombonus.sdk.model.MobileAppPromocodeShare, ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder, ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder> promocodeBuilder_;
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     * @return Whether the promocode field is set.
+     */
+    @java.lang.Override
+    public boolean hasPromocode() {
+      return payloadCase_ == 18;
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     * @return The promocode.
+     */
+    @java.lang.Override
+    public ru.gazprombonus.sdk.model.MobileAppPromocodeShare getPromocode() {
+      if (promocodeBuilder_ == null) {
+        if (payloadCase_ == 18) {
+          return (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_;
+        }
+        return ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+      } else {
+        if (payloadCase_ == 18) {
+          return promocodeBuilder_.getMessage();
+        }
+        return ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    public Builder setPromocode(ru.gazprombonus.sdk.model.MobileAppPromocodeShare value) {
+      if (promocodeBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        payload_ = value;
+        onChanged();
+      } else {
+        promocodeBuilder_.setMessage(value);
+      }
+      payloadCase_ = 18;
+      return this;
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    public Builder setPromocode(
+        ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder builderForValue) {
+      if (promocodeBuilder_ == null) {
+        payload_ = builderForValue.build();
+        onChanged();
+      } else {
+        promocodeBuilder_.setMessage(builderForValue.build());
+      }
+      payloadCase_ = 18;
+      return this;
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    public Builder mergePromocode(ru.gazprombonus.sdk.model.MobileAppPromocodeShare value) {
+      if (promocodeBuilder_ == null) {
+        if (payloadCase_ == 18 &&
+            payload_ != ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance()) {
+          payload_ = ru.gazprombonus.sdk.model.MobileAppPromocodeShare.newBuilder((ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          payload_ = value;
+        }
+        onChanged();
+      } else {
+        if (payloadCase_ == 18) {
+          promocodeBuilder_.mergeFrom(value);
+        } else {
+          promocodeBuilder_.setMessage(value);
+        }
+      }
+      payloadCase_ = 18;
+      return this;
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    public Builder clearPromocode() {
+      if (promocodeBuilder_ == null) {
+        if (payloadCase_ == 18) {
+          payloadCase_ = 0;
+          payload_ = null;
+          onChanged();
+        }
+      } else {
+        if (payloadCase_ == 18) {
+          payloadCase_ = 0;
+          payload_ = null;
+        }
+        promocodeBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    public ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder getPromocodeBuilder() {
+      return getPromocodeFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    @java.lang.Override
+    public ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder getPromocodeOrBuilder() {
+      if ((payloadCase_ == 18) && (promocodeBuilder_ != null)) {
+        return promocodeBuilder_.getMessageOrBuilder();
+      } else {
+        if (payloadCase_ == 18) {
+          return (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_;
+        }
+        return ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        ru.gazprombonus.sdk.model.MobileAppPromocodeShare, ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder, ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder> 
+        getPromocodeFieldBuilder() {
+      if (promocodeBuilder_ == null) {
+        if (!(payloadCase_ == 18)) {
+          payload_ = ru.gazprombonus.sdk.model.MobileAppPromocodeShare.getDefaultInstance();
+        }
+        promocodeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            ru.gazprombonus.sdk.model.MobileAppPromocodeShare, ru.gazprombonus.sdk.model.MobileAppPromocodeShare.Builder, ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder>(
+                (ru.gazprombonus.sdk.model.MobileAppPromocodeShare) payload_,
+                getParentForChildren(),
+                isClean());
+        payload_ = null;
+      }
+      payloadCase_ = 18;
+      onChanged();;
+      return promocodeBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

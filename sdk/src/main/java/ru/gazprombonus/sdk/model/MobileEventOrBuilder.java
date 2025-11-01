@@ -245,5 +245,31 @@ public interface MobileEventOrBuilder extends
   com.google.protobuf.ByteString
       getClipboardWriteBytes();
 
+  /**
+   * <code>int32 brightness = 17;</code>
+   * @return Whether the brightness field is set.
+   */
+  boolean hasBrightness();
+  /**
+   * <code>int32 brightness = 17;</code>
+   * @return The brightness.
+   */
+  int getBrightness();
+
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   * @return Whether the promocode field is set.
+   */
+  boolean hasPromocode();
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   * @return The promocode.
+   */
+  ru.gazprombonus.sdk.model.MobileAppPromocodeShare getPromocode();
+  /**
+   * <code>.pbv1.MobileAppPromocodeShare promocode = 18;</code>
+   */
+  ru.gazprombonus.sdk.model.MobileAppPromocodeShareOrBuilder getPromocodeOrBuilder();
+
   public ru.gazprombonus.sdk.model.MobileEvent.PayloadCase getPayloadCase();
 }
