@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.SetPartnerstv'
-version = '2.1.0'
+version = '2.2.0'
 
 android {
     compileSdkVersion 34
@@ -13,9 +13,9 @@ android {
 
     defaultConfig {
         minSdkVersion 28
-        targetSdkVersion 34
-        versionCode 40
-        versionName '2.1.0'
+        targetSdkVersion 35
+        versionCode 41
+        versionName '2.2.0'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -25,14 +25,16 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", "\"https://dev-widget.gazprombonus.ru\""
-            buildConfigField "String", "VERSION", "\"$defaultConfig.versionName ($defaultConfig.versionCode)\""
+            buildConfigField "String", "VERSION", "\"$defaultConfig.versionName\""
+            buildConfigField "String", "BUILD", "\"$defaultConfig.versionCode\""
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "BASE_URL", "\"https://widget.gazprombonus.ru\""
-            buildConfigField "String", "VERSION", "\"$defaultConfig.versionName ($defaultConfig.versionCode)\""
+            buildConfigField "String", "VERSION", "\"$defaultConfig.versionName\""
+            buildConfigField "String", "BUILD", "\"$defaultConfig.versionCode\""
         }
     }
     compileOptions {
@@ -49,6 +51,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.protobuf:protobuf-java:3.18.0'
     implementation 'com.google.protobuf:protobuf-java-util:3.18.0'
+    implementation 'com.google.zxing:core:3.5.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -61,7 +64,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.SetPartnerstv'
                 artifactId = 'android-sdk'
-                version = '2.1.0'
+                version = '2.2.0'
             }
         }
     }

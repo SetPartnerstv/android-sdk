@@ -174,6 +174,11 @@ public final class Mobile {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_pbv1_MobileAnalyticsEvent_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_pbv1_MobileAppPromocodeShare_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_pbv1_MobileAppPromocodeShare_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -184,7 +189,7 @@ public final class Mobile {
   static {
     java.lang.String[] descriptorData = {
       "\n\014mobile.proto\022\004pbv1\032\037google/protobuf/ti" +
-      "mestamp.proto\"\252\006\n\013MobileEvent\022#\n\004type\030\001 " +
+      "mestamp.proto\"\364\006\n\013MobileEvent\022#\n\004type\030\001 " +
       "\001(\0162\025.pbv1.MobileEventType\022\"\n\005error\030\002 \001(" +
       "\0132\021.pbv1.MobileErrorH\000\022<\n\027is_ready_to_pa" +
       "y_request\030\003 \001(\0132\031.pbv1.IsReadyToPayReque" +
@@ -204,145 +209,155 @@ public final class Mobile {
       "s_update\030\016 \001(\0132#.pbv1.MobileApplicationP" +
       "aramsUpdateH\000\0225\n\017analytics_event\030\017 \001(\0132\032" +
       ".pbv1.MobileAnalyticsEventH\000\022\031\n\017clipboar" +
-      "d_write\030\020 \001(\tH\000B\t\n\007payload\"\262\001\n\023IsReadyTo" +
-      "PayRequest\022\023\n\013api_version\030\001 \001(\r\022\031\n\021api_v" +
-      "ersion_minor\030\002 \001(\r\022A\n\027allowed_payment_me" +
-      "thods\030\003 \003(\0132 .pbv1.PaymentMethodSpecific" +
-      "ation\022(\n existing_payment_method_require" +
-      "d\030\004 \001(\010\"\312\003\n\022PaymentDataRequest\022)\n\rmercha" +
-      "nt_info\030\001 \001(\0132\022.pbv1.MerchantInfo\022\023\n\013api" +
-      "_version\030\002 \001(\r\022\031\n\021api_version_minor\030\003 \001(" +
-      "\r\022\026\n\016email_required\030\004 \001(\010\022!\n\031shipping_ad" +
-      "dress_required\030\005 \001(\010\022D\n\033shipping_address" +
-      "_parameters\030\006 \001(\0132\037.pbv1.ShippingAddress" +
-      "Parameters\022A\n\027allowed_payment_methods\030\007 " +
-      "\003(\0132 .pbv1.PaymentMethodSpecification\022/\n" +
-      "\020transaction_info\030\010 \001(\0132\025.pbv1.Transacti" +
-      "onInfo\022 \n\030shipping_option_required\030\t \001(\010" +
-      "\022B\n\032shipping_option_parameters\030\n \001(\0132\036.p" +
-      "bv1.ShippingOptionParameters\":\n\014Merchant" +
-      "Info\022\023\n\013merchant_id\030\001 \001(\t\022\025\n\rmerchant_na" +
-      "me\030\002 \001(\t\"Y\n\031ShippingAddressParameters\022\035\n" +
-      "\025allowed_country_codes\030\001 \003(\t\022\035\n\025phone_nu" +
-      "mber_required\030\002 \001(\010\"\377\001\n\017TransactionInfo\022" +
-      "\026\n\016transaction_id\030\001 \001(\t\022\025\n\rcurrency_code" +
-      "\030\002 \001(\t\022\024\n\014country_code\030\003 \001(\t\022\023\n\013total_pr" +
-      "ice\030\004 \001(\t\022\031\n\021total_price_label\030\005 \001(\t\022\032\n\022" +
-      "total_price_status\030\006 \001(\t\022\030\n\020transaction_" +
-      "note\030\007 \001(\t\022\027\n\017checkout_option\030\010 \001(\t\022(\n\rd" +
-      "isplay_items\030\t \003(\0132\021.pbv1.DisplayItem\"I\n" +
-      "\013DisplayItem\022\r\n\005label\030\001 \001(\t\022\014\n\004type\030\002 \001(" +
-      "\t\022\r\n\005price\030\003 \001(\t\022\016\n\006status\030\004 \001(\t\"n\n\030Ship" +
-      "pingOptionParameters\022.\n\020shipping_options" +
-      "\030\001 \003(\0132\024.pbv1.ShippingOption\022\"\n\032default_" +
-      "selected_option_id\030\002 \001(\t\"@\n\016ShippingOpti" +
-      "on\022\n\n\002id\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\023\n\013descrip" +
-      "tion\030\003 \001(\t\"\344\001\n\013PaymentData\022\023\n\013api_versio" +
-      "n\030\001 \001(\r\022\031\n\021api_version_minor\030\002 \001(\r\022\r\n\005em" +
-      "ail\030\003 \001(\t\022\'\n\020shipping_address\030\004 \001(\0132\r.pb" +
-      "v1.Address\0224\n\023payment_method_data\030\005 \001(\0132" +
-      "\027.pbv1.PaymentMethodData\0227\n\024shipping_opt" +
-      "ion_data\030\006 \001(\0132\031.pbv1.SelectionOptionDat" +
-      "a\"!\n\023SelectionOptionData\022\n\n\002id\030\001 \001(\t\"\224\001\n" +
-      "\021PaymentMethodData\022\014\n\004type\030\001 \001(\t\022\034\n\004info" +
-      "\030\002 \001(\0132\016.pbv1.CardInfo\022\023\n\013description\030\003 " +
-      "\001(\t\022>\n\021tokenization_data\030\004 \001(\0132#.pbv1.Pa" +
-      "ymentMethodTokenizationData\"^\n\010CardInfo\022" +
-      "\024\n\014card_network\030\001 \001(\t\022\024\n\014card_details\030\002 " +
-      "\001(\t\022&\n\017billing_address\030\003 \001(\0132\r.pbv1.Addr" +
-      "ess\"\323\001\n\007Address\022\014\n\004name\030\001 \001(\t\022\020\n\010address" +
-      "1\030\002 \001(\t\022\020\n\010address2\030\003 \001(\t\022\020\n\010address3\030\004 " +
-      "\001(\t\022\020\n\010locality\030\005 \001(\t\022\033\n\023administrative_" +
-      "area\030\006 \001(\t\022\024\n\014country_code\030\007 \001(\t\022\023\n\013post" +
-      "al_code\030\010 \001(\t\022\024\n\014sorting_code\030\t \001(\t\022\024\n\014p" +
-      "hone_number\030\n \001(\t\"<\n\035PaymentMethodTokeni" +
-      "zationData\022\014\n\004type\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"" +
-      "\231\001\n\032PaymentMethodSpecification\022\014\n\004type\030\001" +
-      " \001(\t\022(\n\nparameters\030\002 \001(\0132\024.pbv1.CardPara" +
-      "meters\022C\n\032tokenization_specification\030\003 \001" +
-      "(\0132\037.pbv1.TokenizationSpecification\"\252\002\n\016" +
-      "CardParameters\022\034\n\024allowed_auth_methods\030\001" +
-      " \003(\t\022\035\n\025allowed_card_networks\030\002 \003(\t\022\033\n\023a" +
-      "llow_prepaid_cards\030\003 \001(\010\022\032\n\022allow_credit" +
-      "_cards\030\004 \001(\010\022 \n\030billing_address_required" +
-      "\030\005 \001(\010\022B\n\032billing_address_parameters\030\006 \001" +
-      "(\0132\036.pbv1.BillingAddressParameters\022<\n\027ca" +
-      "rd_network_parameters\030\007 \001(\0132\033.pbv1.CardN" +
-      "etworkParameters\"\241\001\n\031TokenizationSpecifi" +
-      "cation\022\014\n\004type\030\001 \001(\t\022C\n\nparameters\030\002 \003(\013" +
-      "2/.pbv1.TokenizationSpecification.Parame" +
-      "tersEntry\0321\n\017ParametersEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\"I\n\030BillingAddressPa" +
-      "rameters\022\016\n\006format\030\001 \001(\t\022\035\n\025phone_number" +
-      "_required\030\002 \001(\010\"a\n\025CardNetworkParameters" +
-      "\022\024\n\014card_network\030\001 \001(\t\022\024\n\014acquirer_bin\030\002" +
-      " \001(\t\022\034\n\024acquirer_merchant_id\030\003 \001(\t\"A\n\013Mo" +
-      "bileError\022\014\n\004code\030\001 \001(\r\022\017\n\007message\030\002 \001(\t" +
-      "\022\023\n\013description\030\003 \001(\t\"m\n\032ApplePayPayment" +
-      "DataRequest\022\024\n\014country_code\030\001 \001(\t\022\025\n\rcur" +
-      "rency_code\030\002 \001(\t\022\"\n\005total\030\003 \001(\0132\023.pbv1.A" +
-      "pplePayTotal\".\n\rApplePayTotal\022\r\n\005label\030\001" +
-      " \001(\t\022\016\n\006amount\030\002 \001(\t\"@\n\023ApplePayPaymentD" +
-      "ata\022)\n\005token\030\001 \001(\0132\032.pbv1.ApplePayPaymen" +
-      "tToken\"~\n\024ApplePayPaymentToken\022\024\n\014paymen" +
-      "t_data\030\001 \001(\t\022\036\n\026transaction_identifier\030\002" +
-      " \001(\t\0220\n\016payment_method\030\003 \001(\0132\030.pbv1.Appl" +
-      "ePaymentMethod\"I\n\022ApplePaymentMethod\022\024\n\014" +
-      "display_name\030\001 \001(\t\022\017\n\007network\030\002 \001(\t\022\014\n\004t" +
-      "ype\030\003 \001(\t\"\367\001\n\027MobileApplicationParams\022\017\n" +
-      "\007user_id\030\001 \001(\t\022\021\n\tdevice_id\030\002 \001(\t\022\027\n\017con" +
-      "firmation_id\030\003 \001(\t\022\030\n\020password_enabled\030\004" +
-      " \001(\010\022\030\n\020biometry_enabled\030\005 \001(\010\022\032\n\022biomet" +
-      "ry_available\030\006 \001(\010\022\021\n\tfcm_token\030\007 \001(\t\022\036\n" +
-      "\026my_tracker_instance_id\030\010 \001(\t\022\034\n\024appmetr" +
-      "ica_device_id\030\t \001(\t\"}\n\035MobileApplication" +
-      "ParamsUpdate\022\017\n\007user_id\030\001 \001(\t\022\027\n\017confirm" +
-      "ation_id\030\002 \001(\t\022\030\n\020password_enabled\030\003 \001(\010" +
-      "\022\030\n\020biometry_enabled\030\004 \001(\010\"%\n\021CreateKeys" +
-      "Request\022\020\n\010password\030\001 \001(\t\"(\n\022CreateKeysR" +
-      "esponse\022\022\n\npublic_key\030\001 \001(\t\"\356\001\n\024MobileAn" +
-      "alyticsEvent\0222\n\nevent_type\030\001 \001(\0162\036.pbv1." +
-      "MobileAnalyticsEventType\022\r\n\005value\030\002 \001(\t\022" +
-      "\022\n\nutm_medium\030\003 \001(\t\022\022\n\nutm_source\030\004 \001(\t\022" +
-      "\024\n\014utm_campaign\030\005 \001(\t\022\020\n\010utm_term\030\006 \001(\t\022" +
-      "\023\n\013utm_content\030\007 \001(\t\022.\n\nemitted_at\030\010 \001(\013" +
-      "2\032.google.protobuf.Timestamp*\271\007\n\017MobileE" +
-      "ventType\022\034\n\030MOBILE_EVENT_UNSPECIFIED\020\000\0222" +
-      "\n.MOBILE_EVENT_GOOGLEPAY_IS_READY_TO_PAY" +
-      "_REQUEST\020\001\0223\n/MOBILE_EVENT_GOOGLEPAY_IS_" +
-      "READY_TO_PAY_RESPONSE\020\002\022/\n+MOBILE_EVENT_" +
-      "GOOGLEPAY_PAYMENT_DATA_REQUEST\020\003\0220\n,MOBI" +
-      "LE_EVENT_GOOGLEPAY_PAYMENT_DATA_RESPONSE" +
-      "\020\004\022-\n)MOBILE_EVENT_GOOGLEPAY_PAYMENT_DAT" +
-      "A_ERROR\020\005\0221\n-MOBILE_EVENT_APPLEPAY_IS_RE" +
-      "ADY_TO_PAY_REQUEST\020\006\0222\n.MOBILE_EVENT_APP" +
-      "LEPAY_IS_READY_TO_PAY_RESPONSE\020\007\022.\n*MOBI" +
-      "LE_EVENT_APPLEPAY_PAYMENT_DATA_REQUEST\020\010" +
-      "\022/\n+MOBILE_EVENT_APPLEPAY_PAYMENT_DATA_R" +
-      "ESPONSE\020\t\022,\n(MOBILE_EVENT_APPLEPAY_PAYME" +
-      "NT_DATA_ERROR\020\n\022!\n\035MOBILE_EVENT_OPEN_URL" +
-      "_REQUEST\020\013\022\025\n\021MOBILE_EVENT_BACK\020\014\022\"\n\036MOB" +
-      "ILE_EVENT_SHARE_URL_REQUEST\020\r\022#\n\037MOBILE_" +
-      "EVENT_GET_PARAMS_REQUEST\020\016\022$\n MOBILE_EVE" +
-      "NT_GET_PARAMS_RESPONSE\020\017\022#\n\037MOBILE_EVENT" +
-      "_SET_PARAMS_REQUEST\020\020\022$\n MOBILE_EVENT_CR" +
-      "EATE_KEYS_REQUEST\020\021\022%\n!MOBILE_EVENT_CREA" +
-      "TE_KEYS_RESPONSE\020\022\022\037\n\033MOBILE_EVENT_PARAM" +
-      "S_UPDATED\020\023\022 \n\034MOBILE_EVENT_ANALYTICS_EV" +
-      "ENT\020\024\022 \n\034MOBILE_EVENT_CLIPBOARD_WRITE\020\025\022" +
-      "\027\n\023MOBILE_EVENT_REVIEW\020\026*\277\003\n\030MobileAnaly" +
-      "ticsEventType\022+\n\'MOBILE_ANALYTICS_EVENT_" +
-      "TYPE_UNSPECIFIED\020\000\022<\n8MOBILE_ANALYTICS_E" +
-      "VENT_TYPE_ANDROID_APP_INSTALL_REFERRER\020\001" +
-      "\0223\n/MOBILE_ANALYTICS_EVENT_TYPE_ANDROID_" +
-      "IAU_INSTALL\020\002\0222\n.MOBILE_ANALYTICS_EVENT_" +
-      "TYPE_ANDROID_IAU_CANCEL\020\003\0222\n.MOBILE_ANAL" +
-      "YTICS_EVENT_TYPE_LOGIN_APP_PASSWORD\020\004\0222\n" +
-      ".MOBILE_ANALYTICS_EVENT_TYPE_LOGIN_APP_B" +
-      "IOMETRY\020\005\0222\n.MOBILE_ANALYTICS_EVENT_TYPE" +
-      "_APP_BIOMETRY_RESET\020\006\0223\n/MOBILE_ANALYTIC" +
-      "S_EVENT_TYPE_ERROR_AUTH_BIOMETRY\020\007B\035\n\031ru" +
-      ".gazprombonus.sdk.modelP\001b\006proto3"
+      "d_write\030\020 \001(\tH\000\022\024\n\nbrightness\030\021 \001(\005H\000\0222\n" +
+      "\tpromocode\030\022 \001(\0132\035.pbv1.MobileAppPromoco" +
+      "deShareH\000B\t\n\007payload\"\262\001\n\023IsReadyToPayReq" +
+      "uest\022\023\n\013api_version\030\001 \001(\r\022\031\n\021api_version" +
+      "_minor\030\002 \001(\r\022A\n\027allowed_payment_methods\030" +
+      "\003 \003(\0132 .pbv1.PaymentMethodSpecification\022" +
+      "(\n existing_payment_method_required\030\004 \001(" +
+      "\010\"\312\003\n\022PaymentDataRequest\022)\n\rmerchant_inf" +
+      "o\030\001 \001(\0132\022.pbv1.MerchantInfo\022\023\n\013api_versi" +
+      "on\030\002 \001(\r\022\031\n\021api_version_minor\030\003 \001(\r\022\026\n\016e" +
+      "mail_required\030\004 \001(\010\022!\n\031shipping_address_" +
+      "required\030\005 \001(\010\022D\n\033shipping_address_param" +
+      "eters\030\006 \001(\0132\037.pbv1.ShippingAddressParame" +
+      "ters\022A\n\027allowed_payment_methods\030\007 \003(\0132 ." +
+      "pbv1.PaymentMethodSpecification\022/\n\020trans" +
+      "action_info\030\010 \001(\0132\025.pbv1.TransactionInfo" +
+      "\022 \n\030shipping_option_required\030\t \001(\010\022B\n\032sh" +
+      "ipping_option_parameters\030\n \001(\0132\036.pbv1.Sh" +
+      "ippingOptionParameters\":\n\014MerchantInfo\022\023" +
+      "\n\013merchant_id\030\001 \001(\t\022\025\n\rmerchant_name\030\002 \001" +
+      "(\t\"Y\n\031ShippingAddressParameters\022\035\n\025allow" +
+      "ed_country_codes\030\001 \003(\t\022\035\n\025phone_number_r" +
+      "equired\030\002 \001(\010\"\377\001\n\017TransactionInfo\022\026\n\016tra" +
+      "nsaction_id\030\001 \001(\t\022\025\n\rcurrency_code\030\002 \001(\t" +
+      "\022\024\n\014country_code\030\003 \001(\t\022\023\n\013total_price\030\004 " +
+      "\001(\t\022\031\n\021total_price_label\030\005 \001(\t\022\032\n\022total_" +
+      "price_status\030\006 \001(\t\022\030\n\020transaction_note\030\007" +
+      " \001(\t\022\027\n\017checkout_option\030\010 \001(\t\022(\n\rdisplay" +
+      "_items\030\t \003(\0132\021.pbv1.DisplayItem\"I\n\013Displ" +
+      "ayItem\022\r\n\005label\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\022\r\n\005p" +
+      "rice\030\003 \001(\t\022\016\n\006status\030\004 \001(\t\"n\n\030ShippingOp" +
+      "tionParameters\022.\n\020shipping_options\030\001 \003(\013" +
+      "2\024.pbv1.ShippingOption\022\"\n\032default_select" +
+      "ed_option_id\030\002 \001(\t\"@\n\016ShippingOption\022\n\n\002" +
+      "id\030\001 \001(\t\022\r\n\005label\030\002 \001(\t\022\023\n\013description\030\003" +
+      " \001(\t\"\344\001\n\013PaymentData\022\023\n\013api_version\030\001 \001(" +
+      "\r\022\031\n\021api_version_minor\030\002 \001(\r\022\r\n\005email\030\003 " +
+      "\001(\t\022\'\n\020shipping_address\030\004 \001(\0132\r.pbv1.Add" +
+      "ress\0224\n\023payment_method_data\030\005 \001(\0132\027.pbv1" +
+      ".PaymentMethodData\0227\n\024shipping_option_da" +
+      "ta\030\006 \001(\0132\031.pbv1.SelectionOptionData\"!\n\023S" +
+      "electionOptionData\022\n\n\002id\030\001 \001(\t\"\224\001\n\021Payme" +
+      "ntMethodData\022\014\n\004type\030\001 \001(\t\022\034\n\004info\030\002 \001(\013" +
+      "2\016.pbv1.CardInfo\022\023\n\013description\030\003 \001(\t\022>\n" +
+      "\021tokenization_data\030\004 \001(\0132#.pbv1.PaymentM" +
+      "ethodTokenizationData\"^\n\010CardInfo\022\024\n\014car" +
+      "d_network\030\001 \001(\t\022\024\n\014card_details\030\002 \001(\t\022&\n" +
+      "\017billing_address\030\003 \001(\0132\r.pbv1.Address\"\323\001" +
+      "\n\007Address\022\014\n\004name\030\001 \001(\t\022\020\n\010address1\030\002 \001(" +
+      "\t\022\020\n\010address2\030\003 \001(\t\022\020\n\010address3\030\004 \001(\t\022\020\n" +
+      "\010locality\030\005 \001(\t\022\033\n\023administrative_area\030\006" +
+      " \001(\t\022\024\n\014country_code\030\007 \001(\t\022\023\n\013postal_cod" +
+      "e\030\010 \001(\t\022\024\n\014sorting_code\030\t \001(\t\022\024\n\014phone_n" +
+      "umber\030\n \001(\t\"<\n\035PaymentMethodTokenization" +
+      "Data\022\014\n\004type\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"\231\001\n\032Pa" +
+      "ymentMethodSpecification\022\014\n\004type\030\001 \001(\t\022(" +
+      "\n\nparameters\030\002 \001(\0132\024.pbv1.CardParameters" +
+      "\022C\n\032tokenization_specification\030\003 \001(\0132\037.p" +
+      "bv1.TokenizationSpecification\"\252\002\n\016CardPa" +
+      "rameters\022\034\n\024allowed_auth_methods\030\001 \003(\t\022\035" +
+      "\n\025allowed_card_networks\030\002 \003(\t\022\033\n\023allow_p" +
+      "repaid_cards\030\003 \001(\010\022\032\n\022allow_credit_cards" +
+      "\030\004 \001(\010\022 \n\030billing_address_required\030\005 \001(\010" +
+      "\022B\n\032billing_address_parameters\030\006 \001(\0132\036.p" +
+      "bv1.BillingAddressParameters\022<\n\027card_net" +
+      "work_parameters\030\007 \001(\0132\033.pbv1.CardNetwork" +
+      "Parameters\"\241\001\n\031TokenizationSpecification" +
+      "\022\014\n\004type\030\001 \001(\t\022C\n\nparameters\030\002 \003(\0132/.pbv" +
+      "1.TokenizationSpecification.ParametersEn" +
+      "try\0321\n\017ParametersEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v" +
+      "alue\030\002 \001(\t:\0028\001\"I\n\030BillingAddressParamete" +
+      "rs\022\016\n\006format\030\001 \001(\t\022\035\n\025phone_number_requi" +
+      "red\030\002 \001(\010\"a\n\025CardNetworkParameters\022\024\n\014ca" +
+      "rd_network\030\001 \001(\t\022\024\n\014acquirer_bin\030\002 \001(\t\022\034" +
+      "\n\024acquirer_merchant_id\030\003 \001(\t\"A\n\013MobileEr" +
+      "ror\022\014\n\004code\030\001 \001(\r\022\017\n\007message\030\002 \001(\t\022\023\n\013de" +
+      "scription\030\003 \001(\t\"m\n\032ApplePayPaymentDataRe" +
+      "quest\022\024\n\014country_code\030\001 \001(\t\022\025\n\rcurrency_" +
+      "code\030\002 \001(\t\022\"\n\005total\030\003 \001(\0132\023.pbv1.ApplePa" +
+      "yTotal\".\n\rApplePayTotal\022\r\n\005label\030\001 \001(\t\022\016" +
+      "\n\006amount\030\002 \001(\t\"@\n\023ApplePayPaymentData\022)\n" +
+      "\005token\030\001 \001(\0132\032.pbv1.ApplePayPaymentToken" +
+      "\"~\n\024ApplePayPaymentToken\022\024\n\014payment_data" +
+      "\030\001 \001(\t\022\036\n\026transaction_identifier\030\002 \001(\t\0220" +
+      "\n\016payment_method\030\003 \001(\0132\030.pbv1.ApplePayme" +
+      "ntMethod\"I\n\022ApplePaymentMethod\022\024\n\014displa" +
+      "y_name\030\001 \001(\t\022\017\n\007network\030\002 \001(\t\022\014\n\004type\030\003 " +
+      "\001(\t\"\371\001\n\027MobileApplicationParams\022\017\n\007user_" +
+      "id\030\001 \001(\t\022\021\n\tdevice_id\030\002 \001(\t\022\031\n\021confirmat" +
+      "ion_uuid\030\003 \001(\t\022\030\n\020password_enabled\030\004 \001(\010" +
+      "\022\030\n\020biometry_enabled\030\005 \001(\010\022\032\n\022biometry_a" +
+      "vailable\030\006 \001(\010\022\021\n\tfcm_token\030\007 \001(\t\022\036\n\026my_" +
+      "tracker_instance_id\030\010 \001(\t\022\034\n\024appmetrica_" +
+      "device_id\030\t \001(\t\"\177\n\035MobileApplicationPara" +
+      "msUpdate\022\017\n\007user_id\030\001 \001(\t\022\031\n\021confirmatio" +
+      "n_uuid\030\002 \001(\t\022\030\n\020password_enabled\030\003 \001(\010\022\030" +
+      "\n\020biometry_enabled\030\004 \001(\010\"%\n\021CreateKeysRe" +
+      "quest\022\020\n\010password\030\001 \001(\t\"(\n\022CreateKeysRes" +
+      "ponse\022\022\n\npublic_key\030\001 \001(\t\"\356\001\n\024MobileAnal" +
+      "yticsEvent\0222\n\nevent_type\030\001 \001(\0162\036.pbv1.Mo" +
+      "bileAnalyticsEventType\022\r\n\005value\030\002 \001(\t\022\022\n" +
+      "\nutm_medium\030\003 \001(\t\022\022\n\nutm_source\030\004 \001(\t\022\024\n" +
+      "\014utm_campaign\030\005 \001(\t\022\020\n\010utm_term\030\006 \001(\t\022\023\n" +
+      "\013utm_content\030\007 \001(\t\022.\n\nemitted_at\030\010 \001(\0132\032" +
+      ".google.protobuf.Timestamp\"l\n\027MobileAppP" +
+      "romocodeShare\022*\n\004type\030\001 \001(\0162\034.pbv1.Mobil" +
+      "eAppPromocodeType\022\014\n\004text\030\002 \001(\t\022\027\n\017value" +
+      "_promocode\030\003 \001(\t*\207\010\n\017MobileEventType\022\034\n\030" +
+      "MOBILE_EVENT_UNSPECIFIED\020\000\0222\n.MOBILE_EVE" +
+      "NT_GOOGLEPAY_IS_READY_TO_PAY_REQUEST\020\001\0223" +
+      "\n/MOBILE_EVENT_GOOGLEPAY_IS_READY_TO_PAY" +
+      "_RESPONSE\020\002\022/\n+MOBILE_EVENT_GOOGLEPAY_PA" +
+      "YMENT_DATA_REQUEST\020\003\0220\n,MOBILE_EVENT_GOO" +
+      "GLEPAY_PAYMENT_DATA_RESPONSE\020\004\022-\n)MOBILE" +
+      "_EVENT_GOOGLEPAY_PAYMENT_DATA_ERROR\020\005\0221\n" +
+      "-MOBILE_EVENT_APPLEPAY_IS_READY_TO_PAY_R" +
+      "EQUEST\020\006\0222\n.MOBILE_EVENT_APPLEPAY_IS_REA" +
+      "DY_TO_PAY_RESPONSE\020\007\022.\n*MOBILE_EVENT_APP" +
+      "LEPAY_PAYMENT_DATA_REQUEST\020\010\022/\n+MOBILE_E" +
+      "VENT_APPLEPAY_PAYMENT_DATA_RESPONSE\020\t\022,\n" +
+      "(MOBILE_EVENT_APPLEPAY_PAYMENT_DATA_ERRO" +
+      "R\020\n\022!\n\035MOBILE_EVENT_OPEN_URL_REQUEST\020\013\022\025" +
+      "\n\021MOBILE_EVENT_BACK\020\014\022\"\n\036MOBILE_EVENT_SH" +
+      "ARE_URL_REQUEST\020\r\022#\n\037MOBILE_EVENT_GET_PA" +
+      "RAMS_REQUEST\020\016\022$\n MOBILE_EVENT_GET_PARAM" +
+      "S_RESPONSE\020\017\022#\n\037MOBILE_EVENT_SET_PARAMS_" +
+      "REQUEST\020\020\022$\n MOBILE_EVENT_CREATE_KEYS_RE" +
+      "QUEST\020\021\022%\n!MOBILE_EVENT_CREATE_KEYS_RESP" +
+      "ONSE\020\022\022\037\n\033MOBILE_EVENT_PARAMS_UPDATED\020\023\022" +
+      " \n\034MOBILE_EVENT_ANALYTICS_EVENT\020\024\022 \n\034MOB" +
+      "ILE_EVENT_CLIPBOARD_WRITE\020\025\022\027\n\023MOBILE_EV" +
+      "ENT_REVIEW\020\026\022(\n$MOBILE_EVENT_SHARE_PROMO" +
+      "CODE_REQUEST\020\027\022\"\n\036MOBILE_EVENT_BRIGHTNES" +
+      "S_CHANGE\020\030*\277\003\n\030MobileAnalyticsEventType\022" +
+      "+\n\'MOBILE_ANALYTICS_EVENT_TYPE_UNSPECIFI" +
+      "ED\020\000\022<\n8MOBILE_ANALYTICS_EVENT_TYPE_ANDR" +
+      "OID_APP_INSTALL_REFERRER\020\001\0223\n/MOBILE_ANA" +
+      "LYTICS_EVENT_TYPE_ANDROID_IAU_INSTALL\020\002\022" +
+      "2\n.MOBILE_ANALYTICS_EVENT_TYPE_ANDROID_I" +
+      "AU_CANCEL\020\003\0222\n.MOBILE_ANALYTICS_EVENT_TY" +
+      "PE_LOGIN_APP_PASSWORD\020\004\0222\n.MOBILE_ANALYT" +
+      "ICS_EVENT_TYPE_LOGIN_APP_BIOMETRY\020\005\0222\n.M" +
+      "OBILE_ANALYTICS_EVENT_TYPE_APP_BIOMETRY_" +
+      "RESET\020\006\0223\n/MOBILE_ANALYTICS_EVENT_TYPE_E" +
+      "RROR_AUTH_BIOMETRY\020\007*s\n\026MobileAppPromoco" +
+      "deType\022\017\n\013UNSPECIFIED\020\000\022\006\n\002QR\020\001\022\020\n\014BARCO" +
+      "DEEAN13\020\002\022\017\n\013BARCODEEAN8\020\003\022\016\n\nBARCODE128" +
+      "\020\004\022\r\n\tPROMOCODE\020\005B$\n ru.ogon.app.widgetf" +
+      "ragment.modelP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -354,7 +369,7 @@ public final class Mobile {
     internal_static_pbv1_MobileEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pbv1_MobileEvent_descriptor,
-        new java.lang.String[] { "Type", "Error", "IsReadyToPayRequest", "PaymentDataRequest", "IsReadyToPay", "PaymentData", "ApplepayPaymentDataRequest", "ApplepayPaymentData", "OpenUrlRequest", "ShareUrlRequest", "ApplicationParams", "CreateKeysRequest", "CreateKeysResponse", "ApplicationParamsUpdate", "AnalyticsEvent", "ClipboardWrite", "Payload", });
+        new java.lang.String[] { "Type", "Error", "IsReadyToPayRequest", "PaymentDataRequest", "IsReadyToPay", "PaymentData", "ApplepayPaymentDataRequest", "ApplepayPaymentData", "OpenUrlRequest", "ShareUrlRequest", "ApplicationParams", "CreateKeysRequest", "CreateKeysResponse", "ApplicationParamsUpdate", "AnalyticsEvent", "ClipboardWrite", "Brightness", "Promocode", "Payload", });
     internal_static_pbv1_IsReadyToPayRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_pbv1_IsReadyToPayRequest_fieldAccessorTable = new
@@ -516,13 +531,13 @@ public final class Mobile {
     internal_static_pbv1_MobileApplicationParams_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pbv1_MobileApplicationParams_descriptor,
-        new java.lang.String[] { "UserId", "DeviceId", "ConfirmationId", "PasswordEnabled", "BiometryEnabled", "BiometryAvailable", "FcmToken", "MyTrackerInstanceId", "AppmetricaDeviceId", });
+        new java.lang.String[] { "UserId", "DeviceId", "ConfirmationUuid", "PasswordEnabled", "BiometryEnabled", "BiometryAvailable", "FcmToken", "MyTrackerInstanceId", "AppmetricaDeviceId", });
     internal_static_pbv1_MobileApplicationParamsUpdate_descriptor =
       getDescriptor().getMessageTypes().get(27);
     internal_static_pbv1_MobileApplicationParamsUpdate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pbv1_MobileApplicationParamsUpdate_descriptor,
-        new java.lang.String[] { "UserId", "ConfirmationId", "PasswordEnabled", "BiometryEnabled", });
+        new java.lang.String[] { "UserId", "ConfirmationUuid", "PasswordEnabled", "BiometryEnabled", });
     internal_static_pbv1_CreateKeysRequest_descriptor =
       getDescriptor().getMessageTypes().get(28);
     internal_static_pbv1_CreateKeysRequest_fieldAccessorTable = new
@@ -541,6 +556,12 @@ public final class Mobile {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pbv1_MobileAnalyticsEvent_descriptor,
         new java.lang.String[] { "EventType", "Value", "UtmMedium", "UtmSource", "UtmCampaign", "UtmTerm", "UtmContent", "EmittedAt", });
+    internal_static_pbv1_MobileAppPromocodeShare_descriptor =
+      getDescriptor().getMessageTypes().get(31);
+    internal_static_pbv1_MobileAppPromocodeShare_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_pbv1_MobileAppPromocodeShare_descriptor,
+        new java.lang.String[] { "Type", "Text", "ValuePromocode", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 
